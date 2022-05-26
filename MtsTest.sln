@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MtsTest", "MtsTest\MtsTest.csproj", "{D46FB4EC-7DBE-404F-8D71-D1C0524CB463}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MtsTest_Logic", "MtsTest_Logic\MtsTest_Logic.csproj", "{AC46BA9B-CCA3-45C1-8723-8A9B281825B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D46FB4EC-7DBE-404F-8D71-D1C0524CB463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D46FB4EC-7DBE-404F-8D71-D1C0524CB463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D46FB4EC-7DBE-404F-8D71-D1C0524CB463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D46FB4EC-7DBE-404F-8D71-D1C0524CB463}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC46BA9B-CCA3-45C1-8723-8A9B281825B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC46BA9B-CCA3-45C1-8723-8A9B281825B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC46BA9B-CCA3-45C1-8723-8A9B281825B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC46BA9B-CCA3-45C1-8723-8A9B281825B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A04256B-7D6D-481F-A2F5-155D2A3FE95E}
+	EndGlobalSection
+EndGlobal

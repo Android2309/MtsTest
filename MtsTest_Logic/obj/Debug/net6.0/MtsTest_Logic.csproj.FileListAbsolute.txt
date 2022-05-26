@@ -1,0 +1,12 @@
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\bin\Debug\net6.0\MtsTest_Logic.deps.json
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\bin\Debug\net6.0\MtsTest_Logic.dll
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\bin\Debug\net6.0\MtsTest_Logic.pdb
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\obj\Debug\net6.0\MtsTest_Logic.csproj.AssemblyReference.cache
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\obj\Debug\net6.0\MtsTest_Logic.GeneratedMSBuildEditorConfig.editorconfig
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\obj\Debug\net6.0\MtsTest_Logic.AssemblyInfoInputs.cache
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\obj\Debug\net6.0\MtsTest_Logic.AssemblyInfo.cs
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\obj\Debug\net6.0\MtsTest_Logic.csproj.CoreCompileInputs.cache
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\obj\Debug\net6.0\MtsTest_Logic.dll
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\obj\Debug\net6.0\refint\MtsTest_Logic.dll
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\obj\Debug\net6.0\MtsTest_Logic.pdb
+C:\WorkingDirectory\MtsTest\MtsTest_Logic\obj\Debug\net6.0\ref\MtsTest_Logic.dll
