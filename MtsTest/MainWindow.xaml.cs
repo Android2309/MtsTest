@@ -3,35 +3,87 @@ using MtsTest_Logic.Models;
 using MtsTest_Logic.Presenters;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace MtsTest
 {
-    public partial class MainWindow : Window, IDataView
+    public partial class MainWindow : Window, IFolderView, IFileView
     {
+        FilesPresenter filesPresenter;
         FoldersPresenter foldersPresenter;
 
-        private object dummyNode = null;
         public MainWindow()
         {
             InitializeComponent();
 
-            foldersPresenter = new FoldersPresenter(this);
+            ((INotifyCollectionChanged)lvFiles.Items).CollectionChanged += lvFiles_CollectionChanged;
+            ((INotifyCollectionChanged)lvFolders.Items).CollectionChanged += lvFolders_CollectionChanged;
 
+            btnAscFiles.IsEnabled = btnDescFiles.IsEnabled = false;
+            btnAscFolders.IsEnabled = btnDescFolders.IsEnabled = false;
+
+            filesPresenter = new FilesPresenter(this);
+            filesPresenter.SetFilesData();
+
+            foldersPresenter = new FoldersPresenter(this);
             foldersPresenter.SetFoldersData();
 
             SetTreeView();
         }
-        public IEnumerable<ViewElement> ViewData
+        public IEnumerable<ViewElement> ViewFoldersData
         {
             set => this.lvFolders.ItemsSource = value;
         }
 
+        public IEnumerable<ViewElement> ViewFilesData
+        {
+            set => this.lvFiles.ItemsSource = value; 
+        }
+
+        private void btnAscFolders_Click(object sender, RoutedEventArgs e)
+        {
+            foldersPresenter.OrderFoldersByASc();
+        }
+        private void btnDescFolders_Click(object sender, RoutedEventArgs e)
+        {
+            foldersPresenter.OrderFoldersByDesc();
+        }
+
+        private void btnAscFiles_Click(object sender, RoutedEventArgs e)
+        {
+            filesPresenter.OrderFilesByASc();
+        }
+
+        private void btnDescFiles_Click(object sender, RoutedEventArgs e)
+        {
+            filesPresenter.OrderFilesByDesc();
+        }
+
+        private void lvFiles_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Reset)
+            {
+                btnAscFiles.IsEnabled = btnDescFiles.IsEnabled = true;
+            }
+        }
+
+        private void lvFolders_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Reset)
+            {
+                btnAscFolders.IsEnabled = btnDescFolders.IsEnabled = true;
+            }
+        }
+
+
+        //TODO вынести логику, (mvp паттерн), добавить файлы
+        #region treeview
+        private object dummyNode = null;
 
         public string SelectedImagePath { get; set; }
-
 
         private void SetTreeView()
         {
@@ -69,5 +121,8 @@ namespace MtsTest
                 catch (Exception) { }
             }
         }
+        #endregion
+
+
     }
 }

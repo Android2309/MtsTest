@@ -6,21 +6,34 @@ namespace MtsTest_Logic.Presenters
     public class FoldersPresenter
     {
         IDataModel model;
-        IDataView view;
+        IFolderView view;
 
-        public FoldersPresenter(IDataView View)
+        public FoldersPresenter(IFolderView View)
         {
             this.view = View;
 
             model = new FoldersDataModel();
         }
 
-        public void SetFoldersData()
+        public async void SetFoldersData()
         {
-            List<ViewElement> foldersData = model.GetAllData(@"C:\").ToList();
+            List<ViewElement> foldersData = await Task.Run(() => model.GetAllData(@"C:\Program Files").ToList());
 
-            view.ViewData = foldersData;
+            view.ViewFoldersData = FoldersDataModel.DataList = foldersData;
         }
 
+        public async void OrderFoldersByASc()
+        {
+            List<ViewElement> foldersData = await Task.Run(() => model.GetOrderByAscData(FoldersDataModel.DataList).ToList());
+
+            view.ViewFoldersData = foldersData;
+        }
+
+        public async void OrderFoldersByDesc()
+        {
+            List<ViewElement> foldersData = await Task.Run(() => model.GetOrderByDescData(FoldersDataModel.DataList).ToList());
+
+            view.ViewFoldersData = foldersData;
+        }
     }
 }

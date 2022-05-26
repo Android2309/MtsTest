@@ -1,40 +1,17 @@
 ﻿using MtsTest_Logic.Interfaces;
-using Microsoft.CodeAnalysis.CSharp.Scripting;
 
 namespace MtsTest_Logic.Models
 {
     public class FoldersDataModel : IDataModel
     {
+        public static IEnumerable<ViewElement> DataList { get; set; }
         public IEnumerable<ViewElement> GetAllData(string path)
         {
             var result = GetFoldersWithSizeOfLevel(path);
 
-            int index = 0;
-            SetDataSize(result, ref index);
+            SetDataSize(result);
 
             return result;
-        }
-
-        private void SetDataSize(List<ViewElement> dataList, ref int startIndex)
-        {
-            var result = dataList;
-
-            try
-            {
-                for (int i = startIndex; i < dataList.Count(); i++)
-                {
-                    if (dataList[i + 1].Name.Contains(dataList[startIndex].Name))
-                        dataList[startIndex].Size += dataList[i + 1].Size;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            startIndex++;
-            if (startIndex < dataList.Count())
-                SetDataSize(dataList, ref startIndex);
         }
 
         /// <summary>
@@ -45,6 +22,7 @@ namespace MtsTest_Logic.Models
         private List<ViewElement> GetFoldersWithSizeOfLevel(string path)
         {
             var result = new List<ViewElement>();
+
             try
             {
                 string[] folders = Directory.GetDirectories(path);
@@ -52,14 +30,19 @@ namespace MtsTest_Logic.Models
                 Parallel.ForEach(folders, folder =>
                 {
                     long levelSize = GetSizeOfLevel(folder);
+
                     result.Add(new ViewElement()
                     {
                         Name = folder,
                         Size = levelSize
                     });
-                    result.AddRange(GetFoldersWithSizeOfLevel(folder));
+
+                    var foldersToAdd = GetFoldersWithSizeOfLevel(folder);
+
+                    result.AddRange(foldersToAdd);
                 });
             }
+            //TODO обработать ошибки
             catch (UnauthorizedAccessException ex) { }
             catch (DirectoryNotFoundException ex) { }
             catch (Exception ex) { }
@@ -77,19 +60,39 @@ namespace MtsTest_Logic.Models
 
             return levelSize;
         }
+        private void SetDataSize(List<ViewElement> dataList)
+        {
+            CleanFromNulls(dataList);
+
+            var tempList = new List<ViewElement>();
+
+            tempList.AddRange(dataList);
+
+
+            for (int i = 0; i < dataList.Count();i++)
+            {
+                for(int j = 0; j < tempList.Count(); j ++)
+                {
+                    if (tempList[j].Name.Contains(dataList[i].Name))
+                        dataList[i].Size += tempList[j].Size;
+                }
+            }
+        }
+
+        //TODO убрать этот костыль, понять откуда беруться null-ы в списке
+        private void CleanFromNulls(List<ViewElement> dataList)
+        {
+            dataList.RemoveAll(x => x == null);
+        }
 
         public IEnumerable<ViewElement> GetOrderByAscData(IEnumerable<ViewElement> folders)
         {
-            List<ViewElement> result = new List<ViewElement>();
-
-            return result;
+            return folders.OrderBy(x => x.Size);
         }
 
         public IEnumerable<ViewElement> GetOrderByDescData(IEnumerable<ViewElement> folders)
         {
-            List<ViewElement> result = new List<ViewElement>();
-
-            return result;
+            return folders.OrderByDescending(x => x.Size);
         }
     }
 }

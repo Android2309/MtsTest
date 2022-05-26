@@ -27,13 +27,13 @@
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
             <Label Content="Папки" Margin="10 0 0 0"/>
-            <Button x:Name="btnAscFolders" Content="По возрастанию" Style="{StaticResource ButtonStyle}" Margin="10 0 0 0"/>
-            <Button x:Name="btnDescFolders" Content="По убыванию" Style="{StaticResource ButtonStyle}" Margin="10 0 0 0"/>
+            <Button x:Name="btnAscFolders" Content="По возрастанию" Style="{StaticResource ButtonStyle}" Margin="10 0 0 0" Click="btnAscFolders_Click"/>
+            <Button x:Name="btnDescFolders" Content="По убыванию" Style="{StaticResource ButtonStyle}" Margin="10 0 0 0" Click="btnDescFolders_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="4" Grid.Row="0" Orientation="Horizontal">
             <Label Content="Файлы" Margin="10 0 0 0"/>
-            <Button x:Name="btnAscFiles" Content="По возрастанию" Style="{StaticResource ButtonStyle}" Margin="10 0 0 0"/>
-            <Button x:Name="btnDescFiles" Content="По убыванию" Style="{StaticResource ButtonStyle}" Margin="10 0 0 0"/>
+            <Button x:Name="btnAscFiles" Content="По возрастанию" Style="{StaticResource ButtonStyle}" Margin="10 0 0 0" Click="btnAscFiles_Click"/>
+            <Button x:Name="btnDescFiles" Content="По убыванию" Style="{StaticResource ButtonStyle}" Margin="10 0 0 0" Click="btnDescFiles_Click"/>
         </StackPanel>
         <DockPanel Grid.Column="0" Grid.Row="2">
             <TreeView x:Name="treeView" DockPanel.Dock="Top"/>
@@ -50,8 +50,8 @@
         <ListView x:Name="lvFiles" Grid.Column="4" Grid.Row="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100">Имя</GridViewColumn>
-                    <GridViewColumn Width="100">Размер</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100">Имя</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Size}" Width="100">Размер</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
