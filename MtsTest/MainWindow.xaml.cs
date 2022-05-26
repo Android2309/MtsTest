@@ -10,6 +10,7 @@ using System.Windows.Controls;
 
 namespace MtsTest
 {
+    //для простоты отладки взята директория C:\Program Files, 
     public partial class MainWindow : Window, IFolderView, IFileView
     {
         FilesPresenter filesPresenter;

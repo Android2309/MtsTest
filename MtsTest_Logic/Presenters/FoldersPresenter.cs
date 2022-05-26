@@ -17,6 +17,8 @@ namespace MtsTest_Logic.Presenters
 
         public async void SetFoldersData()
         {
+            //TODO вынести директорию для сканирования в конфиги или UI
+            //для простоты отладки взята директория C:\Program Files
             List<ViewElement> foldersData = await Task.Run(() => model.GetAllData(@"C:\Program Files").ToList());
 
             view.ViewFoldersData = FoldersDataModel.DataList = foldersData;
